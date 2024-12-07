@@ -1,0 +1,11 @@
+special_task at ven. 06 déc. 2024 23:02:37 CET
+special_task at ven. 06 déc. 2024 23:03:17 CET
+special_task at ven. 06 déc. 2024 23:03:28 CET
+special_task at ven. 06 déc. 2024 23:03:49 CET
+special_task ran by airflow at ven. 06 déc. 2024 23:26:11 CET
+special_task ran by airflow at ven. 06 déc. 2024 23:28:04 CET
+special_task ran by airflow at ven. 06 déc. 2024 23:30:04 CET
+special_task ran by airflow at ven. 06 déc. 2024 23:32:04 CET
+special_task ran by airflow at ven. 06 déc. 2024 23:59:01 CET
+special_task ran by airflow at sam. 07 déc. 2024 00:00:04 CET
+second_task ran by *** with path not declared at sam. 07 déc. 2024 03:02:29 CET
