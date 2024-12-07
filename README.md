@@ -47,7 +47,8 @@ loic-cheong@loic-cheong-VirtualBox:~$ docker ps
 Cannot connect to the Docker daemon at unix:///home/loic-cheong/.docker/desktop/docker.sock. Is the docker daemon running?
 
 
-install airflow avec docker : https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
+install airflow with docker : https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
+
 
 
 -->
