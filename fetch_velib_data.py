@@ -58,6 +58,6 @@ def fetch_velib_data():
     station_info = get_station_info()
     station_status = get_station_status()
     df = station_status.merge(station_info, on=["station_id","stationCode"])
-    df.to_csv('historique_stations.csv', header=True, index=False)
+    df.to_csv('historique_stations.csv', header=True, index=False, sep = ',')
 
 fetch_velib_data()

@@ -1,2 +1,4 @@
 env/
 logs/*
+_
+__pycache__

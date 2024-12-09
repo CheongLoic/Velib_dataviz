@@ -23,22 +23,22 @@ with DAG(
     #params={"example_key": "example_value"},
 ) as dag:
 
-    path = "/home/loic-cheong/Desktop/Airflow_projet" # path to the project folder on Linux
+#     path = "/home/loic-cheong/Desktop/Airflow_projet" # path to the project folder on Linux
 
    # always write the last dag first 
     last_task = BashOperator(
         task_id="last_task",
-        bash_command="cd " + path + "; echo 'End of task'  >> this_is_a_test.txt",
+        bash_command="echo 'End of task' ",
     )
 
     first_task = BashOperator(
             task_id="first_task",
-            bash_command='cd ' + path + '; echo "first_task ran by airflow at $(date)"  >> this_is_a_test.txt',
+            bash_command='echo "first_task ran by airflow at $(date)"  ',
     )
 
     second_task = BashOperator(
             task_id="second_task",
-            bash_command='cd /home/loic-cheong/Desktop/Airflow_projet; echo "second_task ran by airflow with path not declared at $(date)"  >> this_is_a_test.txt',
+            bash_command='echo "second_task ########### at $(date)" ',
     )
 
     task3 = BashOperator(
