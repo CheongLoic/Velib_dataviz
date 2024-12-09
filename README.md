@@ -1,17 +1,50 @@
 # Velib_dataviz
 
+## About the Data 
+Data get from the Open Data : https://www.velib-metropole.fr/donnees-open-data-gbfs-du-service-velib-metropole
+API used : 
+- https://velib-metropole-opendata.smovengo.cloud/opendata/Velib_Metropole/station_status.json
+- https://velib-metropole-opendata.smovengo.cloud/opendata/Velib_Metropole/station_information.json
 
-# Google Cloud Platform (GCP)
+**Station Info**
+- station_id: Unique identification number of the station. This number identifies the station within the Vélib’ Métropole service.
+- is_installed: Binary variable indicating whether the station has been deployed (1) or is still being deployed (0).
+- is_renting: Binary variable indicating whether the station can rent bikes (is_renting=1 if the station status is "Operative").
+- is_returning: Binary variable indicating whether the station can receive bikes (is_returning=1 if the station status is "Operative").
+- last_reported: Date of the last update.
+- numBikesAvailable: Number of bikes available.
+- numDocksAvailable: Number of docks available.
+- num_bikes_available: Number of bikes available.
+- num_bikes_available_types: Number of bikes available, with a distinction between mechanical and electric Vélib’ bikes.
 
-## Install a Composer Environment
-A Composer Environment is a service cloud to manage pipeline  of workflows with Airflows.
+**Station Status**
+- capacity: Number of docks at the station.
+- lat: Latitude of the station (in WGS84 format).
+- lon: Longitude of the station (in WGS84 format).
+- name: Name of the station.
+- station_id: Unique identifier associated with the station. This number identifies the station within the Vélib’ Métropole service.
 
-1. Create an account at the GCP. Personnaly, i use a free-trial
-    Create a project. Select your project
+How the data is manipulated ?
+With python scripts (DAGs), data will be added first in GCS then in BigQuery. At the end, it will be used for analysis
+<p align="center">
+  <img src="img/process.png">
+  <img src="img/DAG_graph.png">
+  ![alt text](image.png)
+</p>
+
+
+## Google Cloud Platform (GCP)
+
+### Install a Composer Environment
+A Composer Environment is a service cloud to manage pipeline of workflows with Airflows
+It automates scripts with a scheduler
+
+1. First, create an account at GCP. Personnaly, I used a free-trial account
+    Create a project. Give it a name. Select your project
 2. Go to **API & Services** and activate the **API Cloud Composer**
 3. Go to **IAM & Admin** and create a service account : 
     - Enter the name of the service account 
-    - Grant the following roles :
+    - Grant the following roles to the new service account :
         * Environment and Storage Object Administrator
         * Editor
         * Service Account User 
@@ -23,7 +56,8 @@ A Composer Environment is a service cloud to manage pipeline  of workflows with 
         - Bigquery Admin
 4. At the Cloud Console, enter `Composer`, then click it
 5. Create a new Cloud Composer Environment 
-6. Choose Composer 2
+6. Choose the following setting : 
+    - Choose Composer 2
     - Choose a name to your Composer Environment 
     - Choose a location
     - Choose latest airflow version
@@ -35,19 +69,50 @@ A Composer Environment is a service cloud to manage pipeline  of workflows with 
 8. When you create a composer environment, it also create a bucket where your dags are
 9. Open the Cloud Shell on GCP and run the command `gsutil ls -la`. It gives the list of bucket folders at the Google Cloud Storage
 
+### Clone this repo
+
+On GCP, open the Cloud Shell (top right) and add this repo
+```bash
+git clone https://github.com/CheongLoic/Velib_dataviz.git
+cd Velib_dataviz
+```
+
 <p align="center">
   <img src="img/cloud_shell.png">
   <img src="img/bucket_folder.png">
+  <img src="img/airflow_UI.png">
 </p>
 
+Move all python scripts in `/dags"" to your bucket
 ```bash
-gsutil cp gs://<votre-bucket-composer>/dags/<nom_du_dag>.py . #télécharger le dag localement dans le Cloud Shell
-gsutil cp <dag_a_envoyer.py> gs://<votre-bucket-composer>/dags/<nom_du_dag>.py #envoyer dag dans le bucket
+gsutil cp dag/<DAG_name.py>   gs://<votre-bucket-composer>/dags/<nom_du_dag>.py  #télécharger un dag spécifique dans le bucket
+gsutil cp dag/*  gs://<votre-bucket-composer>/dags/  #télécharger tous les dags  dans le bucket
+gsutil cp gs://<votre-bucket-composer>/dags/<nom_du_dag>.py /  #Récupérer un dag du bucket localement 
 ```
 
+<!-- <p align="center"> -->
+<!-- </p> -->
+To access to Airflow, go the Cloud Composer and click on 'Airflow'
+<img src="img/composer.png">
+<img src="img/airflow_UI.png">
+
+What you have in your bucket : 
+<img src="img/bucket_dags.png">
+<img src="img/bucket_data.png">
+<img src="img/airflow_UI.png">
+
+On Bigquery : 
+<img src="img/Bigquery.png">
+   
+
+## Power BI 
 
 
-Create table in Bigquery
+
+
+
+
+<!-- Create table in Bigquery
 1. Navigate to BigQuery Console : Go to the [BigQuery page](https://console.cloud.google.com/bigquery) in the Google Cloud Console.
 2. Select Dataset : Choose the dataset where you want to load the data.
 3. Create Table : Click the “Create Table” button.
@@ -55,10 +120,8 @@ Create table in Bigquery
 5. File Format : Select the format of your file (e.g., CSV, JSON, Avro, Parquet, ORC).
 6. GCS URI : Enter the URI of your GCS file (e.g., `gs://bucket-name/file-name`).
 7. Schema : Define the schema manually or use the auto-detect feature.
-8. Create Table : Click “Create Table” to load the data.
+8. Create Table : Click “Create Table” to load the data. -->
 
-
-# Data Visaluation on POWER BI
 
 CURRENTLY DOING IT
 
