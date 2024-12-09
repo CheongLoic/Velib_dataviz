@@ -1,7 +1,7 @@
 # Velib_dataviz
 
 ## About the Data 
-Data get from the Open Data : https://www.velib-metropole.fr/donnees-open-data-gbfs-du-service-velib-metropole
+Data get from the Open Data of  La Ville de Paris : https://www.velib-metropole.fr/donnees-open-data-gbfs-du-service-velib-metropole
 API used : 
 - https://velib-metropole-opendata.smovengo.cloud/opendata/Velib_Metropole/station_status.json
 - https://velib-metropole-opendata.smovengo.cloud/opendata/Velib_Metropole/station_information.json
@@ -13,8 +13,8 @@ API used :
 - is_returning: Binary variable indicating whether the station can receive bikes (is_returning=1 if the station status is "Operative").
 - last_reported: Date of the last update.
 - numBikesAvailable: Number of bikes available.
-- numDocksAvailable: Number of docks available.
 - num_bikes_available: Number of bikes available.
+- numDocksAvailable: Number of docks available.
 - num_bikes_available_types: Number of bikes available, with a distinction between mechanical and electric Vélib’ bikes.
 
 **Station Status**
@@ -29,7 +29,6 @@ With python scripts (DAGs), data will be added first in GCS then in BigQuery. At
 <p align="center">
   <img src="img/process.png">
   <img src="img/DAG_graph.png">
-  ![alt text](image.png)
 </p>
 
 
@@ -105,9 +104,18 @@ On Bigquery :
 <img src="img/Bigquery.png">
    
 
-## Power BI 
+## Data visualization 
 
-
+Possibles bjectifs à résoudre : 
+- Optimisation de l'emplacement des stations
+- Prévision de la demande de vélos
+- Analyse de l'utilisation des vélos
+- Amélioration de la gestion de l'infrastructure
+-  Évaluation de la performance du service
+- Étude de l'accessibilité et de l'équité 
+- Évaluation des comportements des utilisateurs
+- Optimisation des coûts opérationnels
+- Impact de la météo sur l'utilisation des vélos
 
 
 
