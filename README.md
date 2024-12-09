@@ -2,6 +2,7 @@
 
 ## About the Data 
 Data get from the Open Data of  La Ville de Paris : https://www.velib-metropole.fr/donnees-open-data-gbfs-du-service-velib-metropole
+
 API used : 
 - https://velib-metropole-opendata.smovengo.cloud/opendata/Velib_Metropole/station_status.json
 - https://velib-metropole-opendata.smovengo.cloud/opendata/Velib_Metropole/station_information.json
@@ -24,7 +25,7 @@ API used :
 - name: Name of the station.
 - station_id: Unique identifier associated with the station. This number identifies the station within the Vélib’ Métropole service.
 
-How the data is manipulated ?
+How is the data manipulated ?
 With python scripts (DAGs), data will be added first in GCS then in BigQuery. At the end, it will be used for analysis
 <p align="center">
   <img src="img/process.png">
@@ -82,7 +83,7 @@ cd Velib_dataviz
   <img src="img/airflow_UI.png">
 </p>
 
-Move all python scripts in `/dags"" to your bucket
+Move all python scripts in `/dags` to your `<bucket>/dags`
 ```bash
 gsutil cp dag/<DAG_name.py>   gs://<votre-bucket-composer>/dags/<nom_du_dag>.py  #télécharger un dag spécifique dans le bucket
 gsutil cp dag/*  gs://<votre-bucket-composer>/dags/  #télécharger tous les dags  dans le bucket
@@ -105,8 +106,7 @@ On Bigquery :
    
 
 ## Data visualization 
-
-Possibles bjectifs à résoudre : 
+Possibles objectifs à résoudre : 
 - Optimisation de l'emplacement des stations
 - Prévision de la demande de vélos
 - Analyse de l'utilisation des vélos
